@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+
+  bootnode:
+    hostname: geth-bootnode
+    env_file:
+      - .env
+    image: bootnode
+    build:
+      context: ./bootnode
+      dockerfile: Dockerfile
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    ports:
+      - "8545:8545"
+
+  node-1:
+    hostname: geth-node-1
+    env_file:
+      - .env
+    image: node-1
+    build:
+      context: ./node-1
+      dockerfile: Dockerfile
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    depends_on:
+      - bootnode
+    ports:
+      - "8546:8546"
+
+  node-2:
+    hostname: geth-node-2
+    env_file:
+      - .env
+    image: node-2
+    build:
+      context: ./node-2
+      dockerfile: Dockerfile
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    depends_on:
+      - bootnode
+    ports:
+      - "8547:8547"
