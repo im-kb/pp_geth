@@ -17,7 +17,7 @@ Note that bootnodes are not the same as static nodes. Static nodes are called ov
  because new nodes keep coming up and require some of this information.
  
  
- Yes. Bootnode can be validator nodes. It does not matter whether bootnode is validator or non validator.
+ Bootnode can be validator nodes. It does not matter whether bootnode is validator or non validator.
  For all other nodes, it is just some node which can be used to get information of other nodes and get previous blockchain data.
  NOTE: Since the validator node needs to expose its enode address (enode://pubkey1@ip1:port1) and thus the validator node's IP address in order to be a Bootnode,
  having validator nodes serve as Bootnodes (and advertising this) makes it easier for network attackers (DDOS) to target validator nodes.
@@ -94,3 +94,5 @@ admin.addPeer("enode://eec3a5bbc9230397880a24c968c52f1eb09baecd63701f1d039e8a574
 To encode the signer addresses in extradata, concatenate 32 zero bytes, all signer addresses and 65 further zero bytes.
  The result of this concatenation is then used as the value accompanying the extradata key in genesis.json.
  In the example below, extradata contains a single initial signer address, 0x7df9a875a174b3bc565e6424a0050ebc1b2d1d82.
+
+ instance.isAdmin.sendTransaction('0xC1C171Aa00656c46852A867061bA439C6b4641F6',{ from: eth.accounts[0], gas: 1000000 });
