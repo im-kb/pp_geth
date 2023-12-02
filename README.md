@@ -54,6 +54,8 @@ nc -zv localhost 30304
 cat ~/.ethereum/geth/nodekey
 cd ~/.ethereum/keystore/
 
+geth account list | awk '/Account #0:/ {print $3}' | sed 's/{\(.*\)}/0x\1/'
+
 ### [Example calls to rpc rest api]:
 curl -s -X POST --data '{"jsonrpc":"2.0","method":"net_version","params":[],"id":1}' -H "Content-Type: application/json" "http://localhost:8545"
 
@@ -67,16 +69,19 @@ geth attach
 ```
 Now, within the geth JavaScript console following commands may come in handy:
 
-geth account list | awk '/Account #0:/ {print $3}' | sed 's/{\(.*\)}/0x\1/'
+eth.syncing
+eth.mining
+eth.hashrate
+eth.blockNumber
+eth.pendingTransactions
+eth.getCode("<CONTRACT_ADDRESS>");
 
 eth.getBalance("C1C171Aa00656c46852A867061bA439C6b4641F6")
 eth.getBalance("347381d459f2854b6f217be187b6cf6c5f53104a")
 eth.getBalance("caa5191965956a87de379f9666c7033faa90232b")
 
-
-
-eth.sendTransaction({from: "caa5191965956a87de379f9666c7033faa90232b", to: "C1C171Aa00656c46852A867061bA439C6b4641F6", value: web3.toWei(1, "ether")})
-
+eth.sendTransaction({from: "C1C171Aa00656c46852A867061bA439C6b4641F6", to: "caa5191965956a87de379f9666c7033faa90232b", value: web3.toWei(1, "ether")})
+eth.getTransactionCount('0xC1C171Aa00656c46852A867061bA439C6b4641F6')
 
 admin.peers
 admin.nodeInfo

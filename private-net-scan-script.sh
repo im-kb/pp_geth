@@ -12,7 +12,7 @@ hexLatestBlockNumber=$(curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_bl
 latestBlockNumber=$((16#${hexLatestBlockNumber}))
 
 # Define the output file with the current date and time
-outputFile="block_info_${currentDateTime}.txt"
+outputFile="block_info_${currentDateTime}.json"
 
 # Iterate through blocks and print basic block information, saving to the output file
 for ((i=0; i<=latestBlockNumber; i++)); do
