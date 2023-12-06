@@ -1,0 +1,70 @@
+version: '3.9'
+
+services:
+
+  bootnode:
+    hostname: geth-bootnode
+    extends:
+      file: docker-compose-common-node.yaml
+      service: node
+    image: blockchain-node
+    env_file:
+      - bootnode/.env
+    ports:
+      - "8545:8545"
+    volumes:
+      - type: bind
+        source: ${PWD}/genesis.json
+        target: /app/genesis.json
+        read_only: true
+      - type: bind
+        source: ${PWD}/bootnode/node.private.key
+        target: /app/node.private.key
+        read_only: true
+
+  node01:
+    hostname: geth-node01
+    extends:
+      file: docker-compose-common-node.yaml
+      service: node
+    image: blockchain-node
+    env_file:
+      - node01/.env
+    volumes:
+      - type: bind
+        source: ${PWD}/genesis.json
+        target: /app/genesis.json
+        read_only: true
+      - type: bind
+        source: ${PWD}/node01/node.private.key
+        target: /app/node.private.key
+        read_only: true
+    depends_on:
+      - bootnode
+
+  node02:
+    hostname: geth-node02
+    extends:
+      file: docker-compose-common-node.yaml
+      service: node
+    image: blockchain-node
+    env_file:
+      - node02/.env
+    volumes:
+      - type: bind
+        source: ${PWD}/genesis.json
+        target: /app/genesis.json
+        read_only: true
+      - type: bind
+        source: ${PWD}/node02/node.private.key
+        target: /app/node.private.key
+        read_only: true
+    depends_on:
+      - bootnode
+
+networks:
+  blockchain:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: ${ACCEPT_NETWORK_CIDR}

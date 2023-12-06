@@ -1,3 +1,8 @@
+# TODO
+- The file for static nodes
+- NETWORK_ID in the root .env file
+
+---
 docker compose build
 
 docker compose up -d
@@ -95,8 +100,8 @@ remove a sealer: clique.propose("0x8132ac3481ff1c3e871d4ea34b4069edb5ed0f99", fa
 web3.personal.unlockAccount('0d1915640f9449305b5ca966892ff4f522833b85', 'test')
 
 admin.addPeer("enode://c038a67f8fcddb4fa7cf544ac4855e7acbf5578e4071ba6d57cd1eb94959fbd172d424dacc107413c59c05ff48756e801af5a5bc47913b8bda830b2b23af59f1@geth-bootnode:30303")
-admin.addPeer("enode://c038a67f8fcddb4fa7cf544ac4855e7acbf5578e4071ba6d57cd1eb94959fbd172d424dacc107413c59c05ff48756e801af5a5bc47913b8bda830b2b23af59f1@geth-node-1:30304")
-admin.addPeer("enode://eec3a5bbc9230397880a24c968c52f1eb09baecd63701f1d039e8a5749c7752c9e505aad6d33397a13094a4705c9efbe283bb4e12665f13f9b4aa0ee0b65ab52@geth-node-2:30305")
+admin.addPeer("enode://c038a67f8fcddb4fa7cf544ac4855e7acbf5578e4071ba6d57cd1eb94959fbd172d424dacc107413c59c05ff48756e801af5a5bc47913b8bda830b2b23af59f1@geth-node01:30304")
+admin.addPeer("enode://eec3a5bbc9230397880a24c968c52f1eb09baecd63701f1d039e8a5749c7752c9e505aad6d33397a13094a4705c9efbe283bb4e12665f13f9b4aa0ee0b65ab52@geth-node02:30305")
 
 
 instance.isAdmin.sendTransaction('0xC1C171Aa00656c46852A867061bA439C6b4641F6',{ from: eth.accounts[0], gas: 1000000 });

@@ -6,7 +6,7 @@ RPC_ENDPOINT="http://localhost:8545"
 currentDateTime=$(date +"%Y%m%d_%H%M%S")
 
 # Get the latest block number in hexadecimal format
-hexLatestBlockNumber=$(curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' -H "Content-Type: application/json" $RPC_ENDPOINT | grep -oP '(?<="result":"0x)[^"]*')
+hexLatestBlockNumber=$(curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' -H "Content-Type: application/json" $RPC_ENDPOINT | jq -r '.result')
 
 # Convert hexadecimal to decimal using Bash arithmetic
 latestBlockNumber=$((16#${hexLatestBlockNumber}))

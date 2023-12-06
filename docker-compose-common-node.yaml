@@ -1,0 +1,11 @@
+services:
+  node:
+    build:
+      context: .
+    deploy:
+      resources:
+        limits:
+          cpus: '8'
+          memory: 8GB
+    networks:
+      blockchain:
